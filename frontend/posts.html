@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Pumpkin Painting</title>
+    <meta charset="UTF-8" />
+    <link href="posts.css" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+    <a href="./allposts.html" class="button" id="alle">All Events</a><br />
+    <a href="./dashboard.html" class="button" id="db">Dashboard</a><br />
+    <img src="./logo.jpg" alt="Behind the Scenes Logo" width="250" height="125" />
+    <h2 id="ename" name="ename">Pumpkin painting</h2>
+    </div>
+
+    <div id="content">
+
+        <div id="details">
+            <p>Category: <span id="etype" name="etype">Social </span></p>
+            <p>Mode: <span id="emode" name="emode">In-Person</span></p>
+            <p>Time: <span id="etime" name="etime">10/31/2021 2PM - 5PM</span></p>
+            <p>Location: <span id="eloc" name="eloc">Union Building</span></p>
+            <p>Description: <br /><span id="eloc" name="eloc">Come grab a pumpkin and we will provide the paint you need!</span></p>
+        </div>
+
+        <h3>Comments</h3>
+
+        <div id="addcom">
+            <form action="">
+                <label for="yourcomment">Your Comments:</label><br />
+                <textarea id="yourcomment" name="yourcomment" rows="4" cols="50"></textarea>
+                <br />
+                <input type="submit" value="Submit" id="submit" />
+            </form>
+        </div>
+
+        <br />
+
+        <div id="allcom">
+            <h4>All Comments</h4>
+            <table id="comment">
+                <tr>
+                    <td><span id="p1t" name="p1t">10/30/2021 8:30 PM</span></td>
+                    <td class="names"><span id="p1" name="p1">Isabelle</span>: </td>
+                    <td class="words"><span id="p1c" name="p1c">This sounds fun. Definitely going!</span></td>
+                </tr>
+                <tr>
+                    <td><span id="p1t" name="p1t">10/30/2021 8:55 PM</span></td>
+                    <td class="names"><span id="p2" name="p2">Grace</span>: </td>
+                    <td class="words"><span id="p2c" name="p2c">Any decoration ideas?</span></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>
