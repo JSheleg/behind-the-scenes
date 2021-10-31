@@ -17,6 +17,29 @@ body {
     font-weight: bold;
 }
 
+#comments {
+    float: left;
+    margin-left: 400px;
+    text-align: center;
+}
+
+#friends {
+    float: right;
+    margin-right: 400px;
+    text-align: center;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    background: #363636;
+}
+
 .button {
     display: block;
     width: 115px;
