@@ -28,12 +28,23 @@ type Comment {
   commentBody: String
   createdAt: String
   username: String
+  
 }
 type Query {
+  me: User
   users: [User]
   user(username: String!): User
   events(username: String): [Event]
   event(_id: ID!): Event
+}
+type Mutation{
+  login(email:String!, password:String!):User
+  addUser(username: String!, email: String!, password: String!): User
+  addEvent(eventName:String!, eventDescription:String!): Event
+  deleteEvent(eventId: ID!):Event
+  addComment(eventId:ID!,commentBody:String!): Event
+  deleteComment(commentId:ID!):Event
+  addFriend(friendId:ID!):User
 }
 `;
 

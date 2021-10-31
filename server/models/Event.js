@@ -17,20 +17,20 @@ const eventSchema = new Schema(
             maxlength: 280
         },
         eventDate:{
-            type: Date,
-            required: true
+            type: String,
+            // required: true
         },
         eventCategory:{
             type: String,
-            required: true
+            // required: true
         },
         eventMode: {
             type: String,
-            required:true
+            // required:true
         },
         location: {
             type: String,
-            required: true
+            // required: true
         },
         comments: [commentSchema]
     },
