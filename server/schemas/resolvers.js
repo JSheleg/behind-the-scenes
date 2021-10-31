@@ -1,6 +1,7 @@
 //import models
 const { User, Event } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -14,6 +15,7 @@ const resolvers = {
 
           return userData;
       }
+      throw new AuthenticationError('Not logged in');
     },
     users: async () => {
       return User.find()
@@ -26,14 +28,16 @@ const resolvers = {
       return Event.find(params).sort({ eventDate: -1 });
     },
     event: async (parent, { _id }) => {
-      return event.findOne({ _id });
+      return Event.findOne({ _id });
     },
   },
   Mutation:{
     //add user
     addUser: async (parent, args) => {
       const user = await User.create(args);
-      return user;
+      const token = signToken(user);
+
+      return { token, user };
     },
     //login
     login: async (parent, { email, password }) => {
@@ -48,8 +52,8 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials');
       }
-    
-      return user;
+      const token = signToken(user);
+      return { token, user };
     },
     addEvent: async (parent, args, context) => {
       if (context.user) {
@@ -63,6 +67,8 @@ const resolvers = {
 
         return event;
       }
+
+      throw new AuthenticationError('You need to be logged in!');
     },
     addComment: async (parent, { eventId, commentBody }, context) => {
       if (context.user) {
@@ -99,8 +105,10 @@ const resolvers = {
         ).populate('events');
         return updatedUser;
       }
+      throw new AuthenticationError('You need to be logged in!');
     },
     deleteComment: async (parents, {commentId}, context) => {
+      if(context.user){
       const updatedEvent = await Event.findOneAndUpdate(
         {_id: context.user._id},
         {$pull:{comments:commentId}},
@@ -108,6 +116,9 @@ const resolvers = {
       ).populate('events');
       return updatedEvent;
     }
+    throw new AuthenticationError('You need to be logged in!');
+  }
+
   }
 };
 

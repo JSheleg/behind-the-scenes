@@ -30,6 +30,12 @@ type Comment {
   username: String
   
 }
+
+type Auth {
+  token: ID!
+  user: User
+}
+
 type Query {
   me: User
   users: [User]
@@ -38,9 +44,14 @@ type Query {
   event(_id: ID!): Event
 }
 type Mutation{
-  login(email:String!, password:String!):User
-  addUser(username: String!, email: String!, password: String!): User
-  addEvent(eventName:String!, eventDescription:String!): Event
+  login(email:String!, password:String!):Auth
+  addUser(username: String!, email: String!, password: String!):Auth
+  addEvent(eventName:String!,
+           eventDescription:String!,
+           eventDate:String!,
+           eventCategory: String!,
+           eventMode:String!
+           location: String!): Event
   deleteEvent(eventId: ID!):Event
   addComment(eventId:ID!,commentBody:String!): Event
   deleteComment(commentId:ID!):Event
